@@ -13,48 +13,48 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build-docker-image:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - name: Step description
         run: echo "Building docker image.."
   deploy-dev:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [build-docker-image]
     steps:
       - uses: actions/checkout@v4
       - name: Step description
         run: echo "Deployment triggered on DEV environment.. "
   api-tests-dev:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [deploy-dev]
     steps:
       - uses: actions/checkout@v4
       - name: Step description
         run: echo "API Tests triggered against DEV environment.. "
   deploy-stg:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [api-tests-dev]
     steps:
       - uses: actions/checkout@v4
       - name: Step description
         run: echo "Deployment triggered on STG environment.. "
   api-tests-stg:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [deploy-stg]
     steps:
       - uses: actions/checkout@v4
       - name: Step description
         run: echo "API Tests triggered against STG environment.. "
   deploy-prd:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [api-tests-stg]
     steps:
       - uses: actions/checkout@v4
       - name: Step description
         run: echo "Deployment triggered on PRD environment.. "
   api-tests-prd:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [deploy-prd]
     steps:
       - uses: actions/checkout@v4
